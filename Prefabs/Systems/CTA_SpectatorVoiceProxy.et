@@ -1,0 +1,13 @@
+GenericEntity {
+ ID "FF311A48CDA04FA6"
+ components {
+  CTA_SpectatorVoiceProxyComponent "{05FA30A77875430B}" {
+  }
+  SCR_VoNComponent "{FFF8E8755C9C4AF9}" {
+   Filename "{B4C3941EC8B2AD20}Sounds/VON/von.acp"
+  }
+  RplComponent "{E63009E0FB504A71}" {
+   Streamable Disabled
+  }
+ }
+}

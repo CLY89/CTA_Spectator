@@ -19,6 +19,8 @@ SCR_ManualCamera {
  m_bStartAtEntity 1
  m_DefaultFlags 0
  m_aComponents {
+  CTA_SpectatorVoiceManualCameraComponent "{8E9ABE6202424200}" {
+  }
   SCR_SettingsManualCameraComponent "{6A937AD5F7487CBD}" {
    m_iPriority 99
    m_Flags MOVE
