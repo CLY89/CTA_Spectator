@@ -1,0 +1,126 @@
+SCR_ManualCamera {
+ ID "6A937AD5F7487D70"
+ components {
+  SCR_HintConditionComponent "{6A937AD5F7487D7B}" {
+   m_Hints SCR_HintConditionList "{56469C624E6EB694}" : "{13D7BA631A52EC59}Configs/Hints/ManualCamera.conf" {
+   }
+  }
+  Hierarchy "{6A937AD5F7487D48}" {
+  }
+ }
+ editor EntityEditorProps "{6A937AD5F7487D4A}" {
+  Style icon
+  Icon "{99CAB176956E40DE}Prefabs/WorldEditor/EntityIcons/Decal/CameraDecal.et"
+  Scale 3
+ }
+ coords 1339.068 51.001 1437.776
+ FOV 70
+ cameraFlags 0x6 0
+ m_bStartAtEntity 1
+ m_DefaultFlags 0
+ m_aComponents {
+  SCR_SettingsManualCameraComponent "{6A937AD5F7487CBD}" {
+   m_iPriority 99
+   m_Flags MOVE
+  }
+  SCR_SaveManualCameraComponent "{6A937AD5F7487CB8}" {
+   m_iPriority 99
+   m_LayoutSave "{1FE0AD219B981475}UI/layouts/Camera/ManualCameraSave.layout"
+   m_LayoutLoad "{572D31C77FFA613A}UI/layouts/Camera/ManualCameraLoad.layout"
+  }
+  SCR_InitInputManualCameraComponent "{6A937AD5F7487CBA}" {
+   m_iPriority 99
+  }
+  SCR_HideHUDManualCameraComponent "{6A937AD5F7487CA5}" {
+   m_iPriority 99
+   m_LayersWhitelist 50
+  }
+  SCR_AttachManualCameraComponent "{6A937AD5F7487CA7}" {
+   m_iPriority 30
+   m_Layout "{8E1A03C5B848245E}UI/layouts/Camera/ManualCameraAttach.layout"
+  }
+  SCR_SpeedBoostUpManualCameraComponent "{6A937AD5F7487CA1}" {
+   m_iPriority 25
+  }
+  SCR_RotateModifierManualCameraComponent "{6A937AD5F7487CA3}" {
+   m_FlagsWhitelist 0
+   m_iPriority 25
+  }
+  SCR_AdjustSpeedManualCameraComponent "{6A937AD5F7487CAE}" {
+   m_iPriority 20
+   m_Layout "{537FEC1E4F88C4F7}UI/layouts/Camera/ManualCameraSpeed.layout"
+  }
+  SCR_SpeedBoostManualCameraComponent "{6A937AD5F7487CA8}" {
+   m_iPriority 20
+  }
+  SCR_SetSpeedManualCameraComponent "{6A937AD5F7487CAA}" {
+   m_iPriority 20
+  }
+  SCR_SpeedByHeightManualCameraComponent "{6A937AD5F7487C89}" {
+   m_FlagsWhitelist SPEED_ATL
+   m_iPriority 20
+   m_fHeightCoef {
+    0 0 0.002 0.01 0.004 0.023 0.008 0.035 0.011 0.046 0.017 0.058 0.022 0.068 0.028 0.079 0.039 0.095 0.064 0.127 0.14 0.202 0.281 0.317 0.48 0.455 0.748 0.689 0.925 0.886 1 1
+   }
+  }
+  SCR_OrbitingManualCameraComponent "{6A937AD5F7487C8B}" {
+   m_iPriority 15
+  }
+  SCR_MoveRelativeManualCameraComponent "{6A937AD5F7487CF5}" {
+   m_FlagsWhitelist MOVE
+   m_FlagsBlacklist MOVE_ATL
+   m_iPriority 10
+  }
+  SCR_MoveManualCameraComponent "{6A937AD5F7487CF0}" {
+   m_FlagsWhitelist 5
+   m_iPriority 10
+  }
+  SCR_ATLManualCameraComponent "{6A937AD5F7487CF1}" {
+   m_FlagsWhitelist 5
+   m_iPriority 9
+  }
+  SCR_RotateManualCameraComponent "{6A937AD5F7487CF3}" {
+   m_FlagsWhitelist 3
+   m_iPriority 8
+  }
+  SCR_RotateRollManualCameraComponent "{6A937AD5F7487CFD}" {
+   m_iPriority 8
+  }
+  SCR_AccelerationManualCameraComponent "{6A937AD5F7487CFF}" {
+   m_FlagsWhitelist MOVE
+   m_iPriority 5
+  }
+  SCR_MovementInertiaManualCameraComponent "{6A937AD5F7487CF9}" {
+   m_FlagsWhitelist MOVE
+   m_iPriority 5
+  }
+  SCR_RotationInertiaManualCameraComponent "{6A937AD5F7487CE7}" {
+   m_FlagsWhitelist MOVE
+   m_iPriority 5
+  }
+  SCR_MoveToCursorManualCameraComponent "{6A937AD5F7487CE2}" {
+   m_FlagsWhitelist 0
+   m_FlagsBlacklist ROTATE
+   m_iPriority 4
+  }
+  SCR_TeleportToCursorManualCameraComponent "{6A937AD5F7487CEA}" {
+   m_iPriority 2
+   m_sActionTeleportToPlayer "ManualCameraTeleportToPlayer"
+   m_sSoundEvent "SOUND_E_CAMERA_TELEPORT"
+  }
+  SCR_ZoomManualCameraComponent "{6A937AD5F7487CD5}" {
+   m_iPriority 2
+  }
+  SCR_MapDescriptorManualCameraComponent "{6A937AD5F7487CD7}" {
+   m_iBaseType MDT_CURPOS
+   m_sImageDef "editor-camera"
+   m_IconColor 0.552 0 1 1
+   m_ViewConeColor 0.552 0 1 0.251
+  }
+  SCR_TerrainCollisionManualCameraComponent "{6A937AD5F7487CD1}" {
+   m_FlagsWhitelist ABOVE_TERRAIN
+  }
+  SCR_ViewLinkManualCameraComponent "{6A937AD5F7487CD3}" {
+  }
+ }
+}

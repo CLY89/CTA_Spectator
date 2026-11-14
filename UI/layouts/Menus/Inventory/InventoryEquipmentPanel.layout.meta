@@ -1,0 +1,17 @@
+MetaFileClass {
+ Name "{6D26E7BC727384B6}UI/layouts/Menus/Inventory/InventoryEquipmentPanel.layout"
+ Configurations {
+  LayoutResourceClass PC {
+  }
+  LayoutResourceClass XBOX_ONE : PC {
+  }
+  LayoutResourceClass XBOX_SERIES : PC {
+  }
+  LayoutResourceClass PS4 : PC {
+  }
+  LayoutResourceClass PS5 : PC {
+  }
+  LayoutResourceClass HEADLESS : PC {
+  }
+ }
+}

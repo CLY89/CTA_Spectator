@@ -1,0 +1,58 @@
+ButtonWidgetClass {
+ Name "Button"
+ Slot AlignableSlot "{6A90EB3F160A4A4B}" {
+  HorizontalAlign 3
+  VerticalAlign 3
+ }
+ components {
+  SCR_ButtonBaseComponent "{6A90EB3F2A0F3008}" {
+   m_BackgroundDefault 0 0 0 0.784
+   m_BackgroundHovered 0.002 0.002 0.002 0.98
+  }
+ }
+ style blank
+ {
+  SizeLayoutWidgetClass "{6A90EB3E5C9A2D71}" {
+   Name "SizeLayout"
+   Slot ButtonWidgetSlot "{6A90EB3E5C9A2D52}" {
+    HorizontalAlign 3
+   }
+   AllowHeightOverride 1
+   HeightOverride 50
+   {
+    OverlayWidgetClass "{6A90EB3E9B4D7836}" {
+     Name "Overlay"
+     Slot AlignableSlot "{6A90EB3E9B4D7821}" {
+      HorizontalAlign 3
+      VerticalAlign 3
+      Padding 2 6 2 6
+     }
+     {
+      ImageWidgetClass "{6A90EB4760E1AE51}" {
+       Name "Background"
+       Slot OverlayWidgetSlot "{6A90EB4760E1AE4A}" {
+        HorizontalAlign 3
+        VerticalAlign 3
+       }
+      }
+      RichTextWidgetClass "{6A90EB3D1800C54F}" {
+       Name "Name"
+       Slot OverlayWidgetSlot "{6A90EB3D1800C4AD}" {
+        HorizontalAlign 3
+       }
+      }
+      PanelWidgetClass "{6A90EB4790D96A93}" {
+       Name "Border"
+       Slot OverlayWidgetSlot "{6A90EB4790D96AF6}" {
+        HorizontalAlign 3
+        VerticalAlign 3
+       }
+       Color 0.7605 0.3865 0.0782 1
+       style outline_2px
+      }
+     }
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,13 @@
+SCR_PlayerController : "{225E51284CC95CFA}Prefabs/Characters/Core/DefaultPlayerControllerMP.et" {
+ ID "1A9BA6BEFA06E3B1"
+ components {
+  SCR_FastTravelComponent "{5DAA74121E45C2EB}" {
+   m_iCooldown 0
+   m_iDistanceToTarget 5
+   m_sDestinationType "SCR_SpawnPoint"
+  }
+  SCR_ScenarioFrameworkTriggerNetworkComponent "{6A96A99CC7E8D1C6}" {
+  }
+ }
+ coords 76.404 4.554 38.837
+}

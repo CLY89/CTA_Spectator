@@ -1,0 +1,59 @@
+FrameWidgetClass {
+ Name "rootFrame"
+ {
+  ButtonWidgetClass "{6A90A441CE970AD6}" : "{75C912A1C89BE6C2}UI/layouts/WidgetLibrary/Buttons/WLib_ButtonText.layout" {
+   Name "ButtonClose"
+   Slot FrameWidgetSlot "{6A90A441CE970A65}" {
+    PositionX 22.357
+    OffsetLeft 22.357
+    PositionY 1032.25
+    OffsetTop 1032.25
+    SizeX 59.078
+    OffsetRight -81.435
+    SizeY 32
+    OffsetBottom -1064.25
+   }
+   components {
+    SCR_ButtonTextComponent "{5548F0143AE99095}" {
+     m_BackgroundDefault 0 0 0 0.784
+     m_BackgroundHovered 0.002 0.002 0.002 0.98
+    }
+   }
+  }
+  RichTextWidgetClass "{6A90A4420E59684A}" : "{5E0F8422A1F05728}UI/layouts/WidgetLibrary/RichTextWidgets/RichText_Heading2.layout" {
+   Name "TextTitle"
+   Slot FrameWidgetSlot "{6A90A4420E596BBA}" {
+    PositionX 82.512
+    OffsetLeft 82.512
+    PositionY 53.112
+    OffsetTop 53.112
+    SizeX 157.923
+    OffsetRight -240.435
+    SizeY 48
+    OffsetBottom -101.112
+   }
+  }
+  ScrollLayoutWidgetClass "{6A90EB382E76D130}" {
+   Name "ScrollLayout0"
+   Slot FrameWidgetSlot "{6A90EB382E76D116}" {
+    PositionX 21.154
+    OffsetLeft 21.154
+    PositionY 513.887
+    OffsetTop 513.887
+    SizeX 325.775
+    OffsetRight -346.929
+    SizeY 495.183
+    OffsetBottom -1009.07
+   }
+   {
+    VerticalLayoutWidgetClass "{6A90EB3833576B8C}" {
+     Name "PlayerList"
+     Slot AlignableSlot "{6A90EB3832588591}" {
+      HorizontalAlign 3
+      VerticalAlign 3
+     }
+    }
+   }
+  }
+ }
+}

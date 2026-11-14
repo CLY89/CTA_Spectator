@@ -1,0 +1,53 @@
+GenericEntity {
+ coords 122.053 1 157.582
+}
+SCR_LoadoutManager : "{B54D08AEA74A5354}Prefabs/MP/Managers/Loadouts/LoadoutManager_Editor.et" {
+ coords 119.6 1 134.816
+}
+GenericEntity Area1 : "{C72F956E4AC6A6E7}Prefabs/Systems/ScenarioFramework/Components/Area.et" {
+ coords 131.362 1 133.727
+ {
+  GenericEntity Layer1 : "{5F9FFF4BF027B3A3}Prefabs/Systems/ScenarioFramework/Components/Layer.et" {
+   components {
+    SCR_ScenarioFrameworkLayerBase "{5A2283EA2A0B4B14}" {
+     m_aActivationActions {
+      SCR_ScenarioFrameworkSetVariable "{6A94A0ABCBC90226}" {
+       m_sVariableName "respawnLimit"
+       m_sVariableValue "5"
+      }
+      SCR_ScenarioFrameworkAIActionSetRadioFrequency "{6A96A99944CF544A}" {
+      }
+     }
+    }
+   }
+   coords 0 0 0
+  }
+ }
+}
+GenericEntity : "{F77F7F847CC6455F}Prefabs/Props/Furniture/Bookshelf_01/Bookshelf_01.et" {
+ components {
+  ActionsManagerComponent "{6A90A459AB11C6DE}" {
+   ActionContexts {
+    UserActionContext "{6A90A459AA5CDD8F}" {
+     ContextName "Main"
+     Position PointInfo "{6A90A459AF360C14}" {
+      Offset -0.7374 0.8076 0
+     }
+     Radius 1
+    }
+   }
+   additionalActions {
+    CTA_EnableSpectatorAction "{6A96A9986D07DA4D}" {
+     ParentContextList {
+      "Main"
+     }
+     UIInfo UIInfo "{6A96A9986F48CE61}" {
+      Name "EnableSpectator"
+     }
+    }
+   }
+  }
+ }
+ coords 128.597 1 127.764
+ angles 0 -2.501 0
+}

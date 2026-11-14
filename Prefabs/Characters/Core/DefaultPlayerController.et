@@ -1,0 +1,514 @@
+SCR_PlayerController {
+ ID "6AA60458E614BFF0"
+ components {
+  Persistence "{6AA60458E614BFFB}" {
+  }
+  GamepadIOHandlerComponent "{6AA60458E614BFC9}" {
+  }
+  SCR_AchievementsHandler "{6AA60458E614BF32}" {
+  }
+  SCR_DataCollectorDiagComponent "{6AA60458E614BF3C}" {
+  }
+  SCR_DestructionDiagComponent "{6AA60458E614BF3D}" {
+  }
+  SCR_DestructionSynchronizationComponent "{6AA60458E614BF3E}" {
+  }
+  SCR_FactionCommanderPlayerComponent "{6AA60458E614BF3F}" {
+  }
+  SCR_FastTravelComponent "{6AA60458E614BF39}" {
+  }
+  SCR_HUDManagerComponent "{6AA60458E614BF3B}" {
+   InfoDisplays {
+    SCR_ScreenEffectsManager "{6AA60458E614BF25}" {
+     InfoDisplays {
+      SCR_BleedingScreenEffect "{6AA60458E614BF27}" {
+       m_eLayer BACKGROUND
+       m_eShow 47
+      }
+      SCR_DamageBlurEffect "{6AA60458E614BF22}" {
+       m_eLayer BACKGROUND
+       m_bAdaptiveOpacity 0
+       m_eShow 47
+      }
+      SCR_DeathScreenEffect "{6AA60458E614BF2D}" {
+       m_eLayer BACKGROUND
+       m_bAdaptiveOpacity 0
+       m_eShow 47
+      }
+      SCR_DepthOfFieldEffect "{6AA60458E614BF03}" {
+       VisibleAtParent 1
+       m_eLayer BACKGROUND
+       m_bAdaptiveOpacity 0
+       m_eShow 47
+      }
+      SCR_DesaturationEffect "{6AA60458E614BF0D}" {
+       m_eLayer BACKGROUND
+       m_bAdaptiveOpacity 0
+       m_eShow 47
+      }
+      SCR_FadeInOutEffect "{6AA60458E614BF0F}" {
+       m_eLayer BACKGROUND
+       m_bAdaptiveOpacity 0
+       m_eShow 47
+      }
+      SCR_NoiseFilterEffect "{6AA60458E614BF08}" {
+       m_eLayer BACKGROUND
+       m_bAdaptiveOpacity 0
+       m_eShow 47
+       m_BrightnessIntensityMap CurveCubicSplineFloat "{6AA60458E614BF0B}" {
+        SplineType Custom
+        EndCondition OpenFlat
+        Knots {
+         0.12 0.21 0.3 0.4
+        }
+        ParamMin 0
+        ParamMax 1
+        ValueMin 0
+        ValueMax 1
+        UnrestrictedFlags 0
+        Values {
+         1 0.7 0.1 0
+        }
+        LeftTangents {
+         0 -9.73809 -2.43387 -0.07866
+        }
+        RightTangents {
+         -0.11718 -14.51091 -2.71918 0
+        }
+       }
+      }
+      SCR_StaminaBlurEffect "{6AA60458E614BF75}" {
+       m_eLayer BACKGROUND
+       m_bAdaptiveOpacity 0
+       m_eShow 47
+      }
+      SCR_UnconsciousScreenEffect "{6AA60458E614BF70}" {
+       m_eLayer BACKGROUND
+       m_bAdaptiveOpacity 0
+       m_eShow 47
+       m_eUnconsciousEffectAnimIn EASE_IN_OUT_QUART
+       m_eUnconsciousEffectAnimOut EASE_OUT_QUART
+      }
+      SCR_RegenerationScreenEffect "{6AA60458E614BF7E}" {
+       m_bAdaptiveOpacity 0
+       m_eShow 47
+       m_Curve {
+        0 0 0.236 0.445 0.379 0.09 0.492 0.284 0.583 0.077 0.702 0.226 0.817 0.097 1 0
+       }
+      }
+      SCR_DrowningScreenEffect "{6AA60458E614BF7F}" {
+       m_sAdaptiveOpacityWidgetName "AdaptiveOpacity-Drowning"
+       m_eShow 47
+      }
+      SCR_WeaponSwitchingBaseUI "{6AA60458E614BF78}" {
+       m_LayoutPath "{2A1E1E023967C5A8}UI/layouts/HUD/QuickSelectBar.layout"
+      }
+      SCR_PoisonScreenEffect "{6AA60458E614BF7A}" {
+       m_sAdaptiveOpacityWidgetName "AdaptiveOpacity-Poison"
+      }
+     }
+     m_LayoutPath "{BFBCF7C2CF2E36EE}UI/layouts/HUD/ScreenEffects/ScreenEffects.layout"
+     m_eLayer BACKGROUND
+     m_bAdaptiveOpacity 0
+     m_aHandlers {
+      SCR_InfoDisplayLayerHandler "{6AA60458E614BF6C}" {
+       m_sLayerName "Slot_ScreenEffects"
+      }
+     }
+     m_eShow 47
+    }
+    SCR_NameTagDisplay "{6AA60458E614BF6E}" {
+     m_LayoutPath "{9A88B82955D26B0E}UI/layouts/HUD/NameTag/NametagInfoDisplay.layout"
+     m_eShow 7
+     m_sInterfaceSettingName "m_bShowNameTags"
+    }
+    SCR_EditorPingInfoDisplay "{6AA60458E614BF68}" {
+     m_LayoutPath "{7F843DF1C19765D7}UI/layouts/Editor/Ping/Ping_Editor.layout"
+     m_WidgetPrefab "{68BCC808B7ECE12F}UI/layouts/Editor/EditableEntities/Base/EditableEntity_Base_Pinged.layout"
+     m_SlotWidgetPrefab "{D17B20A5CA8863F4}UI/layouts/Editor/EditableEntities/EditableEntities_Slot.layout"
+    }
+    SCR_VonDisplay "{6AA60458E614BF69}" {
+     m_LayoutPath "{BF665A30A11E5FA6}UI/layouts/HUD/VON/VoNOverlay.layout"
+     m_eLayer ALWAYS_TOP
+     m_aHandlers {
+      SCR_InfoDisplaySlotHandler "{6AA60458E614BF6B}" {
+       m_bCanUpdate 1
+       m_sSlotName "Slot_VON"
+      }
+     }
+     m_eShow 119
+     m_sInterfaceSettingName "m_bShowVoN"
+    }
+    SCR_NotificationsLogDisplay "{6AA60458E614BF55}" {
+     m_LayoutPath "{7A376F90E18453C4}UI/layouts/HUD/Notifications/Notifications_Log.layout"
+     m_aHandlers {
+      SCR_InfoDisplaySlotHandler "{6AA60458E614BF56}" {
+       m_bCanUpdate 1
+       m_sSlotName "Slot_Notifications"
+      }
+     }
+     m_eShow 103
+     m_sInterfaceSettingName "m_bShowNotifications"
+     m_bInsertFromTop 1
+    }
+    SCR_InfoDisplayExtended "{6AA60458E614BF50}" {
+     m_LayoutPath "{4F40BB35BC44C946}UI/layouts/HUD/TeleportFeedback/HUD_GM_TeleportingFeedback.layout"
+     m_eLayer ALWAYS_TOP
+     m_bShowWhenCreated 0
+     m_iOverrideZOrder 1000
+     m_bAdaptiveOpacity 0
+    }
+    SCR_NearbyContextDisplay "{6AA60458E614BF51}" {
+     m_LayoutPath "{32CC3705C3A64A18}UI/layouts/HUD/InteractionSystem/ContextBlipRoot.layout"
+     m_eShow 7
+     m_sInterfaceSettingName "m_bShowNearbyInteractions"
+     m_sDefaultIconImage "{8743979D61AE9F8E}UI/Textures/InteractionSystem/ContextBlip.edds"
+     m_sCachingConfigResource "{DB06AAA4302BA94F}Configs/UI/NearbyInteractionContext/NearbyContextCaching.conf"
+     m_aNearbyWidgetColors {
+      SCR_NearbyContextColorsComponentInteract "{63288126EF6A705B}" : "{E2A00169A550BA4B}Configs/UI/NearbyInteractionContext/NearbyColors/NearbyContextColor_Default.conf" {
+      }
+      SCR_NearbyContextColorsComponentInteract "{63288126E8291D15}" : "{37695BAA68172383}Configs/UI/NearbyInteractionContext/NearbyColors/NearbyContextColor_Generic.conf" {
+      }
+      SCR_NearbyContextColorsComponentInteract "{63288126EBCECA4F}" : "{31481675366910D5}Configs/UI/NearbyInteractionContext/NearbyColors/NearbyContextColor_Healing.conf" {
+      }
+      SCR_NearbyContextColorsComponentInteract "{63288126EBEB9E05}" : "{79D44134CFC6F82E}Configs/UI/NearbyInteractionContext/NearbyColors/NearbyContextColor_Medium.conf" {
+      }
+      SCR_NearbyContextColorsComponentInteract "{63288126EBF44B1D}" : "{A4DA68EA6B62B586}Configs/UI/NearbyInteractionContext/NearbyColors/NearbyContextColor_Severe.conf" {
+      }
+      SCR_NearbyContextColorsComponentInteract "{63288126F6ABCA00}" : "{E97CABB8F915F9A1}Configs/UI/NearbyInteractionContext/NearbyColors/NearbyContextColor_Stable.conf" {
+      }
+     }
+    }
+    SCR_AvailableActionsDisplay "{5566D19527ECD63C}" : "{80CC0413DDBDFCB9}Configs/ControlHints/AvailableActions.conf" {
+     m_eLayer ALWAYS_TOP
+     m_iOverrideZOrder 100
+     m_aHandlers {
+      SCR_InfoDisplaySlotHandler "{5D44B19903651353}" {
+      }
+     }
+     m_eShow 87
+     m_sInterfaceSettingName "m_bShowControlHints"
+     m_aActions {
+      SCR_AvailableActionContext "{5D708420A144CDB4}" {
+      }
+     }
+     m_aBehaviors {
+      AvailableActionLayoutBehavior "{5A6E9253C6A20A02}" {
+      }
+      AvailableActionLayoutBehavior "{5712D2D0AFD48084}" {
+      }
+     }
+    }
+    SCR_ActionMenuInteractionDisplay "{6AA60458E614BEBB}" {
+     m_LayoutPath "{F2B2EB0B4DB2ADB1}UI/layouts/HUD/InteractionSystem/ActionMenuLayout.layout"
+     m_eLayer ALWAYS_TOP
+     m_bAdaptiveOpacity 0
+     m_eShow 7
+     m_aNearbyWidgetColors {
+      SCR_NearbyContextColorsComponentInteract "{644485277A327353}" : "{E2A00169A550BA4B}Configs/UI/NearbyInteractionContext/NearbyColors/NearbyContextColor_Default.conf" {
+      }
+      SCR_NearbyContextColorsComponentInteract "{64448527054C8B8D}" : "{37695BAA68172383}Configs/UI/NearbyInteractionContext/NearbyColors/NearbyContextColor_Generic.conf" {
+      }
+      SCR_NearbyContextColorsComponentInteract "{64448527056D89C0}" : "{31481675366910D5}Configs/UI/NearbyInteractionContext/NearbyColors/NearbyContextColor_Healing.conf" {
+      }
+      SCR_NearbyContextColorsComponentInteract "{6444852705099044}" : "{79D44134CFC6F82E}Configs/UI/NearbyInteractionContext/NearbyColors/NearbyContextColor_Medium.conf" {
+      }
+      SCR_NearbyContextColorsComponentInteract "{6444852705297A9C}" : "{A4DA68EA6B62B586}Configs/UI/NearbyInteractionContext/NearbyColors/NearbyContextColor_Severe.conf" {
+      }
+      SCR_NearbyContextColorsComponentInteract "{644485270D1E4D3F}" : "{E97CABB8F915F9A1}Configs/UI/NearbyInteractionContext/NearbyColors/NearbyContextColor_Stable.conf" {
+      }
+     }
+    }
+    SCR_RestrictionZoneWarningHUDComponent "{6AA60458E614BEA7}" {
+     m_LayoutPath "{309707579229F6A8}UI/layouts/HUD/RestrictionZoneWarning/RestrictionZoneWarning.layout"
+     m_eLayer OVERLAY
+     m_bShowWhenCreated 0
+     m_aWarningUIInfos {
+      SCR_RestrictionZoneWarningInfo "{6AA60458E614BEA0}" {
+       m_iWarningType GAMEMASTER
+       m_UIInfo SCR_UIInfo "{6AA60458E614BEA8}" {
+        Name "#AR-RestrictionZoneWarning_WarningText"
+        Description "#AR-RestrictionZoneWarning_ExplainText"
+        Icon "{9C5EEC72FF985CE3}UI/Textures/DeployMenu/warning-icon-200px.edds"
+       }
+      }
+      SCR_RestrictionZoneWarningInfo "{6AA60458E614BEAA}" {
+       m_iWarningType SINGLE_PLAYER
+       m_UIInfo SCR_UIInfo "{6AA60458E614BEAB}" {
+        Name "#AR-RestrictionZoneWarning_WarningText"
+        Description "#AR-SP_RestrictionZoneWarning_ExplainText"
+        Icon "{9C5EEC72FF985CE3}UI/Textures/DeployMenu/warning-icon-200px.edds"
+       }
+      }
+     }
+    }
+    SCR_ChatHud "{6AA60458E614BE95}" {
+     m_LayoutPath "{D89BBA18F99053D6}UI/layouts/HUD/Chat/ChatHud.layout"
+     m_eLayer HIGH
+     m_aHandlers {
+      SCR_InfoDisplaySlotHandler "{6AA60458E614BE97}" {
+       m_bCanUpdate 1
+       m_sSlotName "Slot_Chat"
+      }
+     }
+     m_eShow 119
+     m_sInterfaceSettingName "m_bShowChat"
+    }
+    SCR_RadialMenuDisplay "{5C7E7548101C6427}" : "{2B36CB1A08905F22}Configs/HUD/RadialMenu/GlobalRadialMenuDisplay.conf" {
+     m_eLayer ALWAYS_TOP
+     m_bShowWhenCreated 0
+     m_eShow 119
+    }
+    SCR_XPInfoDisplay "{6AA60458E614BE91}" {
+     m_LayoutPath "{E0B82B4FCC95EE05}UI/layouts/HUD/CampaignMP/RankProgress.layout"
+     m_eLayer OVERLAY
+     m_bAdaptiveOpacity 1
+     m_sInterfaceSettingName "m_bShowNotifications"
+    }
+    SCR_InfoDisplayExtended "{6AA60458E614BE93}" {
+     InfoDisplays {
+      SCR_GameVersion "{6AA60458E614BE9D}" {
+       m_LayoutPath "{B7A765172F0BD4D9}UI/layouts/Common/GameVersionWatermark.layout"
+       m_sParentSlot "Slot-Watermark"
+       m_eShow 127
+       m_sInterfaceSettingName "m_bShowGameVersion"
+      }
+      SCR_StatsPanel_Latency "{6AA60458E614BE9E}" {
+       m_LayoutPath "{0A3C9C22CBDE338F}UI/layouts/HUD/StatsPanel/StatsPanel.layout"
+       m_sParentSlot "Slot-Latency"
+       m_eShow 127
+       m_sInterfaceSettingName "m_bShowLatency"
+       m_iValueError 150
+       m_bShowOnServer 0
+      }
+      SCR_StatsPanel_PacketLoss "{6AA60458E614BE9F}" {
+       m_LayoutPath "{0A3C9C22CBDE338F}UI/layouts/HUD/StatsPanel/StatsPanel.layout"
+       m_bShowWhenCreated 0
+       m_sParentSlot "Slot-PacketLoss"
+       m_eShow 127
+       m_sInterfaceSettingName "m_bShowPacketLoss"
+       m_sFormattingPattern "#AR-ValueUnit_Percentage"
+       m_iValueWarning 0
+       m_iValueError 0
+       m_iValueMax 100
+       m_sIconOK "packetLoss"
+       m_sIconWarning "packetLoss"
+       m_sIconError "packetLoss"
+       m_sLabel "#AR-ServerBrowser_PacketLoss"
+       m_iUpdateInterval 3
+       m_eValueCalc SHOW_HIGHEST
+       m_bShowInSinglePlayer 1
+       m_bShowOnServer 0
+      }
+      SCR_StatsPanel_FPS "{6AA60458E614BE81}" {
+       m_LayoutPath "{0A3C9C22CBDE338F}UI/layouts/HUD/StatsPanel/StatsPanel.layout"
+       m_sParentSlot "Slot-LocalFPS"
+       m_eShow 127
+       m_sInterfaceSettingName "m_bShowFPS"
+       m_sFormattingPattern "#AR-ValueUnit_FramesPerSecond_LC"
+       m_iValueWarning 49
+       m_iValueError 30
+       m_sIconOK "fps"
+       m_sIconWarning "fps"
+       m_sIconError "fps"
+       m_bShowInSinglePlayer 1
+      }
+      SCR_StatsPanel_FPS "{6AA60458E614BE83}" {
+       m_LayoutPath "{0A3C9C22CBDE338F}UI/layouts/HUD/StatsPanel/StatsPanel.layout"
+       m_bShowWhenCreated 0
+       m_sParentSlot "Slot-ServerFPS"
+       m_eShow 127
+       m_sInterfaceSettingName "m_bShowServerFPS"
+       m_sFormattingPattern "#AR-ValueUnit_FramesPerSecond_LC"
+       m_iValueWarning 30
+       m_iValueError 15
+       m_sIconOK "fpsServer"
+       m_sIconWarning "fpsServer"
+       m_sIconError "fpsServer"
+       m_sLabel "#AR-ServerBrowser_Server"
+       m_bShowOnServer 0
+       m_eFPSLocality SERVER
+      }
+      SCR_StatsPanel_ServerName "{6AA60458E614BE8C}" {
+       m_LayoutPath "{0A3C9C22CBDE338F}UI/layouts/HUD/StatsPanel/StatsPanel.layout"
+       m_sParentSlot "Slot-ServerName"
+       m_eShow 127
+       m_sInterfaceSettingName "m_bShowServerName"
+       m_sFormattingPattern ""
+       m_iValueWarning 100
+       m_iValueError 500
+       m_iValueMax 1000
+       m_sIconOK "radio"
+       m_sIconWarning "radio"
+       m_sIconError "radio"
+       m_sLabel "serverName"
+      }
+      SCR_TaskListDisplay "{6AA60458E614BE8E}" {
+       m_LayoutPath "{63125FB8AA3064FC}UI/layouts/Task/TaskList.layout"
+       m_eLayer ALWAYS_TOP
+       m_bShowWhenCreated 0
+      }
+     }
+     m_LayoutPath "{8761C24BBDE01B92}UI/layouts/HUD/StatsPanel/StatsPanelGrid.layout"
+     m_bAdaptiveOpacity 0
+     m_aHandlers {
+      SCR_InfoDisplaySlotHandler "{6AA60458E614BE88}" {
+       m_bCanUpdate 1
+       m_sSlotName "Slot_GameVersion"
+      }
+     }
+     m_eShow 127
+    }
+    SCR_VONRadialDisplay "{5CD0D211E53A269D}" : "{43AED2210738193A}Configs/HUD/RadialMenu/VONRadialMenuDisplay.conf" {
+     m_eLayer ALWAYS_TOP
+     m_bShowWhenCreated 0
+     m_bAdaptiveOpacity 0
+     m_eShow 87
+    }
+    SCR_InspectCasualtyWidget "{6AA60458E614BE8A}" {
+     m_LayoutPath "{11AC7D61FD4CF3F6}UI/layouts/Damage/InspectCasualtyMenu.layout"
+     m_eShow 7
+    }
+    SCR_MapRadialDisplay "{5D9A832AE20EEA26}" : "{E4788D2619943545}Configs/HUD/RadialMenu/MapRadialMenuDisplay.conf" {
+     m_bShowWhenCreated 0
+     m_bAdaptiveOpacity 0
+     m_bFastFadeOnPerform 1
+    }
+    SCR_2DOpticsDisplay "{6AA60458E614BEF4}" {
+     m_LayoutPath "{4CE66FA8219D33D7}UI/layouts/Sights/Optic_Default.layout"
+     m_eLayer ALWAYS_TOP
+     m_bShowWhenCreated 0
+     m_aHandlers {
+      SCR_InfoDisplayLayerHandler "{6AA60458E614BEF5}" {
+       m_sLayerName "Slot_2DOptics"
+      }
+     }
+     m_eShow 15
+    }
+    SCR_HintInfoDisplay "{6AA60458E614BEF6}" {
+     m_LayoutPath "{20A6917D2114E29A}UI/layouts/HUD/Hint/HintInfoDisplay.layout"
+     m_eLayer HIGH
+     m_bAdaptiveOpacity 0
+     m_aHandlers {
+      SCR_InfoDisplaySlotHandler "{6AA60458E614BEF0}" {
+       m_bCanUpdate 1
+       m_sSlotName "Slot_Hints"
+      }
+     }
+     m_sInterfaceSettingName "m_bShowHints"
+     m_sHintComponentWidget "Hint0"
+    }
+    SCR_VoiceoverSubtitles "{6AA60458E614BEF1}" {
+     m_LayoutPath "{DB7B19150D47381E}UI/layouts/Voiceover/VoiceoverSubtitle.layout"
+     m_eLayer ALWAYS_TOP
+     m_bShowWhenCreated 0
+     m_eShow 119
+    }
+    SCR_ScenarioFrameworkTriggerCountdownDisplay "{6AA60458E614BEF2}" {
+     m_LayoutPath "{47864BB47AB0B1F4}UI/layouts/HUD/CampaignMP/CampaignMainHUD.layout"
+     m_eLayer ALWAYS_TOP
+    }
+   }
+   m_aHandlers {
+    SCR_HUDManagerLayoutHandler "{6AA60458E614BEFC}" {
+     m_bCanUpdate 1
+     m_aHUDLayouts {
+      SCR_HUDLayout "{6AA60458E614BEFF}" {
+       m_sIdentifier "Main"
+       m_sLayout "{3C9DCDD76AB83157}UI/layouts/HUD/HUDLayouts/HUDManager_Root.layout"
+      }
+     }
+     m_sMainLayout "Main"
+    }
+    SCR_HUDManagerEditorVisibilityHandler "{6AA60458E614BEF9}" {
+     m_bCanUpdate 1
+     m_sExitingEditorLayout "Main"
+     m_sEnteringEditorLayout "Editor"
+    }
+   }
+   m_sDefaultBackgroundLayer "Layer_Background"
+   m_sDefaultForegroundLayer "Layer_Foreground"
+   m_AdaptiveOpacityCurve {
+    0 0 0.042 0.392 0.094 0.78 0.163 0.942 0.284 1
+   }
+  }
+  SCR_InteractionHandlerComponent "{6AA60458E614BEFB}" {
+   GlobalVisibilityRange 2.5
+   ReferenceBoneName "head"
+   NearbySphereRadius 5
+   Layers 0x34080 0
+  }
+  SCR_ItemPlacementComponent "{6AA60458E614BEE4}" {
+  }
+  SCR_MineAwarenessComponent "{6AA60458E614BEE6}" {
+  }
+  SCR_NetworkedStatsComponent "{6AA60458E614BEE7}" {
+   m_aStats {
+    SCR_FPSNetworkedStat "{6AA60458E614BEE2}" {
+     m_eStatType FPS
+    }
+   }
+  }
+  SCR_NotificationsComponent "{6AA60458E614BEEC}" {
+  }
+  SCR_PlayerControllerCommandingComponent "{6AA60458E614BEED}" {
+   m_sCommandingConfigActionPair "{2F61BB1D4A843B3A}Configs/Commanding/CommandingMenuActionConfigPairs.conf"
+   m_RadialMenuController SCR_RadialMenuController "{6AA60458E614BEEF}" {
+    m_RMControls SCR_RadialMenuControllerInputs "{6AA60458E614BEE9}" {
+     m_sControllerContext "RadialMenuBindQuickSlotsContext"
+     m_sOpenAction ""
+     m_bCloseOnReleaseOpen 0
+     m_bPerformOnClose 0
+     m_bCloseOnPerform 1
+     m_bPreventEmptyMenuOpen 1
+    }
+    m_Data SCR_SelectionMenuData "{6AA60458E614BED1}" {
+    }
+   }
+  }
+  SCR_PlayerControllerGroupComponent "{6AA60458E614BEDD}" {
+  }
+  SCR_PlayerRestrictionZoneWarningComponent "{6AA60458E614BEDE}" {
+  }
+  SCR_PlayerTeleportedFeedbackComponent "{6AA60458E614BEDF}" {
+  }
+  SCR_PlayerXPHandlerComponent "{6AA60458E614BED8}" {
+  }
+  SCR_RadialMenuGameModeComponent "{6AA60458E614BED9}" {
+   m_Menu SCR_RadialMenu "{5CDAA2AB847A537C}" : "{D9448EF097CB0ACB}Configs/HUD/RadialMenu/GlobalRadialMenu.conf" {
+   }
+  }
+  SCR_VONController "{6AA60458E614BEDA}" {
+   m_VONMenu SCR_VONMenu "{6AA60458E614BEC4}" {
+    m_RadialController SCR_RadialMenuController "{6AA60458E614BEC6}" {
+     m_RMControls SCR_RadialMenuControllerInputs "{6AA60458E614BEC7}" {
+      m_sControllerContext "VONMenuContext"
+      m_sOpenAction "VONMenu"
+      m_bCloseOnReleaseOpen 0
+      m_bPerformOnClose 0
+      m_bCloseOnPerform 1
+      m_bPreventEmptyMenuOpen 1
+      m_bShowWhileUnconcious 0
+     }
+     m_Data SCR_SelectionMenuData "{6AA60458E614BEC1}" {
+     }
+    }
+    m_RadialMenu SCR_RadialMenu "{5CD0D215979B73C1}" : "{D9448EF097CB0ACB}Configs/HUD/RadialMenu/GlobalRadialMenu.conf" {
+    }
+   }
+  }
+  SCR_VoterComponent "{6AA60458E614BEC3}" {
+  }
+  Hierarchy "{6AA60458E614BECC}" {
+  }
+ }
+ editor EntityEditorProps "{6AA60458E614BECF}" {
+  Style icon
+  Icon "{8DC85C409F186382}Prefabs/WorldEditor/EntityIcons/Decal/PlayerControllerDecal.et"
+  Scale 3
+ }
+ coords 0 0 0
+ PlayerEntityName "PlayerCharacter"
+ DefaultControlledEntity "{26A9756790131354}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Rifleman.et"
+ DefaultPlayerCamera "{2DF95AB3CCDF4FA5}Prefabs/Characters/Core/DefaultPlayerCamera.et"
+}

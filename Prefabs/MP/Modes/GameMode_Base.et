@@ -1,0 +1,9 @@
+SCR_BaseGameMode {
+ ID "56B2B479C6B96951"
+ components {
+  CTA_AlivePlayerComponent "{6AA64C36D68ED8B3}" {
+  }
+  CTA_RespawnLimiterComponent "{6A94480D89C0EAF5}" {
+  }
+ }
+}

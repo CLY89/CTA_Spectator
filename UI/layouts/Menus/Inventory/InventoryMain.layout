@@ -1,0 +1,43 @@
+FrameWidgetClass {
+ {
+  OverlayWidgetClass "{60DCC8DF2787CD25}" {
+   Prefab "{60DCC8DF2787CD25}"
+   {
+    VerticalLayoutWidgetClass "{5CFCF5E894AE662F}" {
+     Prefab "{5CFCF5E894AE662F}"
+     {
+      ImageWidgetClass "{5CFCF5E894AE662E}" {
+       Prefab "{5CFCF5E894AE662E}"
+       Slot LayoutSlot "{552CCA33CA467911}" {
+        SizeMode Fill
+       }
+      }
+     }
+    }
+    HorizontalLayoutWidgetClass "{5CFCF5E894AE6623}" {
+     Prefab "{5CFCF5E894AE6623}"
+     {
+      ImageWidgetClass "{5CFCF5E894AE6622}" {
+       Prefab "{5CFCF5E894AE6622}"
+       Slot LayoutSlot "{552CCA33CA467911}" {
+        SizeMode Fill
+       }
+      }
+     }
+    }
+   }
+  }
+  OverlayWidgetClass "{60DCC8DF2787CD32}" {
+   Prefab "{60DCC8DF2787CD32}"
+   {
+    RichTextWidgetClass "{6A96730A1F5CE31E}" {
+     Name "Respawn"
+     Slot OverlayWidgetSlot "{6A96730A1F5CE377}" {
+      HorizontalAlign 0
+      VerticalAlign 0
+     }
+    }
+   }
+  }
+ }
+}
