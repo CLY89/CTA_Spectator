@@ -166,12 +166,12 @@ class CTA_RespawnLimiterComponent:ScriptComponent{
 	protected ref map<int,int> m_mDeathCount = new map<int,int>();
 	[RplProp()]
 	protected int m_iTotalDeath = 0;
-	[RplProp(onRplName:"OnRespawnLimitBroadcasted")]
+	[RplProp(onRplName:"OnRespawnLimitBroadcasted"),Attribute(params: "0 inf",desc: "RespawnLimitCount")]
 	protected int m_iRespawnLimit = 0;
 	protected int m_iDeathSelf = 0;
 	
-	[RplProp(onRplName:"OnRespawnLimitTypeBroadcasted")]
-	protected CTA_RespawnLimitType m_eRespawnLimitType = CTA_RespawnLimitType.Unlimited;
+	[RplProp(onRplName:"OnRespawnLimitTypeBroadcasted"),Attribute("2", uiwidget: UIWidgets.ComboBox, "", "", ParamEnumArray.FromEnum(CTA_RespawnLimitType),desc: "RespawnLimitType")]
+	protected CTA_RespawnLimitType m_eRespawnLimitType;
 	
 	protected ref ScriptCallQueue m_Callqueue = new ScriptCallQueue();
 	protected ref ScriptInvokerBase<CTA_OnRespawnLimitReached> m_OnRespawnLimitReached = new ScriptInvokerBase<CTA_OnRespawnLimitReached>();
@@ -182,7 +182,6 @@ class CTA_RespawnLimiterComponent:ScriptComponent{
 	protected ref ScriptInvokerBase<CTA_OnPlayerAdded> m_OnPlayerAdded =  new ScriptInvokerBase<CTA_OnPlayerAdded>();
 	protected ref ScriptInvokerBase<CTA_OnPlayerRemoved> m_OnPlayerRemoved =  new ScriptInvokerBase<CTA_OnPlayerRemoved>();
 
-	
 	protected static CTA_RespawnLimiterComponent s_Instance;
 	
 	static CTA_RespawnLimiterComponent GetInstance(){
@@ -333,6 +332,7 @@ class CTA_RespawnLimiterComponent:ScriptComponent{
 		gameMode.GetOnPlayerSpawned().Insert(OnPlayerSpawnedHandler);
 		SetEventMask(GetOwner(),EntityEvent.FIXEDFRAME);
 		m_Callqueue.CallLater(SetSFRespawnLimit,2000);
+		m_Callqueue.CallLater(SetSFRespawnType,2000);
 	}
 	
 	void SetSFRespawnLimit(){
@@ -353,6 +353,31 @@ class CTA_RespawnLimiterComponent:ScriptComponent{
 		}
 		SetRespawnLimit(iSfRespawnLimit);
 	
+	}
+	void SetSFRespawnType(){
+		// Set Respawn Limit
+		SCR_ScenarioFrameworkSystem sfSys = SCR_ScenarioFrameworkSystem.GetInstance();
+		if(!sfSys){
+			return;
+		}
+		string sSfRespawnType;
+		if(!sfSys.GetVariable("respawnType",sSfRespawnType)){
+			return;
+		}
+		array<string> enumNames = {};
+		SCR_Enum.GetEnumNames(CTA_RespawnLimitType,enumNames);
+		array<int> enumValues = {};
+		SCR_Enum.GetEnumValues(CTA_RespawnLimitType,enumValues);
+
+		for(int i = 0; i < enumNames.Count(); i++){
+			string name = enumNames[i];
+			int value = enumValues[i];
+			if(name.ToLower() == sSfRespawnType.ToLower()){
+				SetRespawnType(value);
+				return;
+			}
+		}
+		PrintFormat("[CTA] Failed to find matching respawn type. VariableName:respawnType Value:%1",sSfRespawnType,level:LogLevel.ERROR);
 	}
 	protected bool isNoTicket(){
 		return m_iTotalDeath > m_iRespawnLimit;

@@ -4,16 +4,20 @@ GenericEntity {
 SCR_LoadoutManager : "{B54D08AEA74A5354}Prefabs/MP/Managers/Loadouts/LoadoutManager_Editor.et" {
  coords 119.6 1 134.816
 }
-GenericEntity Area1 : "{C72F956E4AC6A6E7}Prefabs/Systems/ScenarioFramework/Components/Area.et" {
+GenericEntity Area_Example_SetVariable : "{C72F956E4AC6A6E7}Prefabs/Systems/ScenarioFramework/Components/Area.et" {
  coords 131.362 1 133.727
  {
-  GenericEntity Layer1 : "{5F9FFF4BF027B3A3}Prefabs/Systems/ScenarioFramework/Components/Layer.et" {
+  GenericEntity Layer_SetVarabile : "{5F9FFF4BF027B3A3}Prefabs/Systems/ScenarioFramework/Components/Layer.et" {
    components {
     SCR_ScenarioFrameworkLayerBase "{5A2283EA2A0B4B14}" {
      m_aActivationActions {
       SCR_ScenarioFrameworkSetVariable "{6A94A0ABCBC90226}" {
        m_sVariableName "respawnLimit"
        m_sVariableValue "5"
+      }
+      SCR_ScenarioFrameworkSetVariable "{6ADCFD98F1E72D01}" {
+       m_sVariableName "respawnType"
+       m_sVariableValue "individual"
       }
       SCR_ScenarioFrameworkAIActionSetRadioFrequency "{6A96A99944CF544A}" {
       }
