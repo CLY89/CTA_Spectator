@@ -7,12 +7,11 @@ class CTA_SpectatorVoiceManualCameraComponent : SCR_BaseManualCameraComponent
 {
 	protected SCR_PlayerController m_CTA_LocalController;
 	protected bool m_CTA_SentActive;
-
 	override bool EOnCameraInit()
 	{
 		if (!GetGame() || System.IsConsoleApp()) return false;
 		m_CTA_LocalController = SCR_PlayerController.Cast(GetGame().GetPlayerController());
-		GetGame().GetCallqueue().CallLater(CTA_UpdateVoice, 500, true);
+		CTA_CallQueue.GetCallQueue().CallLater(CTA_UpdateVoice, 500, true);
 		return false; // Updated by the bounded-frequency callqueue, not every frame.
 		// 毎フレームではなく、一定間隔のコールキューで更新する。
 	}
@@ -48,7 +47,7 @@ class CTA_SpectatorVoiceManualCameraComponent : SCR_BaseManualCameraComponent
 
 	override void EOnCameraExit()
 	{
-		if (GetGame()) GetGame().GetCallqueue().Remove(CTA_UpdateVoice);
+		if (GetGame()) CTA_CallQueue.GetCallQueue().Remove(CTA_UpdateVoice);
 		if (m_CTA_SentActive && m_CTA_LocalController)
 			m_CTA_LocalController.CTA_UpdateSpectatorVoice(false, vector.Zero);
 		m_CTA_SentActive = false;
@@ -179,7 +178,6 @@ class CTA_SpectatorVoiceProxyComponent : ScriptComponent
 	protected int m_CTA_LastUpdate;
 	protected bool m_CTA_HasObserver;
 	protected RplIdentity m_CTA_ObserverIdentity;
-
 	// Keep generation tombstones until the world changes, including after receiver deletion.
 	// 受信機の削除後も最終世代を記憶し、ワールドが変わったら登録情報を初期化する。
 	protected static void CTA_EnsureRegistryWorld()
@@ -232,8 +230,8 @@ class CTA_SpectatorVoiceProxyComponent : ScriptComponent
 		if (SCR_Global.IsEditMode() || !GetGame()) return;
 		m_CTA_VoN = SCR_VoNComponent.Cast(owner.FindComponent(SCR_VoNComponent));
 		CTA_ApplyListenerState();
-		if (Replication.IsServer()) GetGame().GetCallqueue().CallLater(CTA_ServerWatchdog, 1000, true);
-		else GetGame().GetCallqueue().CallLater(CTA_ApplyListenerState, 500, true);
+		if (Replication.IsServer()) CTA_CallQueue.GetCallQueue().CallLater(CTA_ServerWatchdog, 1000, true);
+		else CTA_CallQueue.GetCallQueue().CallLater(CTA_ApplyListenerState, 500, true);
 	}
 
 	void UpdateListener(int playerId, vector cameraPosition, int sequence)
@@ -356,8 +354,8 @@ class CTA_SpectatorVoiceProxyComponent : ScriptComponent
 	{
 		if (GetGame())
 		{
-			GetGame().GetCallqueue().Remove(CTA_ServerWatchdog);
-			GetGame().GetCallqueue().Remove(CTA_ApplyListenerState);
+			CTA_CallQueue.GetCallQueue().Remove(CTA_ServerWatchdog);
+			CTA_CallQueue.GetCallQueue().Remove(CTA_ApplyListenerState);
 		}
 		CTA_StopListener();
 		super.OnDelete(owner);
