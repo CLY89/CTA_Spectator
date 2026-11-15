@@ -1,0 +1,17 @@
+# Workbench resource index, regenerated locally.
+# Workbenchがローカルで再生成するリソース索引。
+/resourceDatabase.rdb
+
+# Local runtime logs.
+# ローカル実行時のログ。
+/logs/
+*.log
+
+# Operating-system metadata.
+# OSが生成する管理ファイル。
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Keep addon.gproj, resource .meta files and test assets tracked.
+# addon.gproj、リソースの.meta、テスト用資産はGitで管理する。
