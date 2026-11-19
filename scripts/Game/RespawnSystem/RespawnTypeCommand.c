@@ -36,29 +36,33 @@ class RespawnTypeCommand:ScrServerCommand{
 
 		string argText = argv[1];
 		argText.ToLower();
-		CTA_RespawnLimitType newRespawnType;
+		CTA_RespawnType newRespawnType;
 		switch(argText){
+			case "life":
 			case "individual":
-				newRespawnType = CTA_RespawnLimitType.Individual;	
+				newRespawnType = CTA_RespawnType.Life;
 				break;
 			case "ticket":
-				newRespawnType = CTA_RespawnLimitType.Ticket;	
+				newRespawnType = CTA_RespawnType.Ticket;
 				break;
 			case "unlimited":
-				newRespawnType = CTA_RespawnLimitType.Unlimited;	
+				newRespawnType = CTA_RespawnType.Unlimited;
 				break;
 			default:	
 				return ScrServerCmdResult(string.Format("Invaild Arg Text:%1",argText), EServerCmdResultType.ERR);
 		}
-		CTA_RespawnLimiterComponent respawnLimiter = CTA_RespawnLimiterComponent.GetInstance();
-		CTA_RespawnLimitType oldRespawnType = respawnLimiter.GetRespawnLimitType();
-		respawnLimiter.SetRespawnType(newRespawnType);
+		CTA_RespawnSystemComponent respawnSystem = CTA_RespawnSystemComponent.GetInstance();
+		if (!respawnSystem)
+			return ScrServerCmdResult("Respawn management is not initialized", EServerCmdResultType.ERR);
+
+		CTA_RespawnType oldRespawnType = respawnSystem.GetRespawnType();
+		respawnSystem.SetRespawnType(newRespawnType);
 		PrintFormat("Set Respawn Type: %1 -> %2",oldRespawnType,newRespawnType, level: LogLevel.NORMAL);
 
 		return ScrServerCmdResult(
 			string.Format("Set Respawn Type: %1 -> %2",
-			typename.EnumToString(CTA_RespawnLimitType,oldRespawnType),
-			typename.EnumToString(CTA_RespawnLimitType,newRespawnType)),
+			typename.EnumToString(CTA_RespawnType,oldRespawnType),
+			typename.EnumToString(CTA_RespawnType,newRespawnType)),
 		 EServerCmdResultType.OK);
 	}
 

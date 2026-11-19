@@ -3,6 +3,8 @@ class CTA_SpectatorUI : EditorMenuUI
 	protected static const string TEXT_TITLE = "TextTitle";
 	protected static const string BUTTON_CLOSE = "ButtonClose";
 	protected ref CTA_SpectatorPlayerListView m_playerListView;
+	protected CTA_PlayerLifeManagerComponent m_playerLifeManager;
+	protected ref ScriptInvoker<int> m_OnPlayerLivesChanged;
 	//------------------------------------------------------------------------------------------------
 	protected override void OnMenuOpen()
 	{
@@ -47,25 +49,36 @@ class CTA_SpectatorUI : EditorMenuUI
 		//PlayerList
 		
 		m_playerListView = new CTA_SpectatorPlayerListView(GetRootWidget().FindAnyWidget("PlayerList"));
-		CTA_AlivePlayerComponent alivePlayer = CTA_AlivePlayerComponent.GetInstance();
+		m_playerLifeManager = CTA_PlayerLifeManagerComponent.GetInstance();
+		if (!m_playerLifeManager)
+		{
+			Print("[CTA_Spectator] Player life manager was not found.", LogLevel.ERROR);
+			return;
+		}
+
+		PlayerManager playerManager = GetGame().GetPlayerManager();
+		if (!playerManager)
+		{
+			Print("[CTA_Spectator] Player manager was not found.", LogLevel.ERROR);
+			return;
+		}
+
 		array<int> ids = {};
-		alivePlayer.GetAlivePlayer(ids);
+		playerManager.GetPlayers(ids);
+
+		m_OnPlayerLivesChanged = m_playerLifeManager.GetOnPlayerLivesChanged();
+		m_OnPlayerLivesChanged.Insert(OnPlayerLivesChangedHandler);
 
 		foreach (int id : ids)
-		{
-			string name = SCR_PlayerNamesFilterCache.GetInstance().GetPlayerDisplayName(id);
-			m_playerListView.AddPlayerEntry(id,name);
-		}
+			RefreshPlayerEntry(id);
 		
 		SCR_BaseGameMode gameMode = SCR_BaseGameMode.Cast(GetGame().GetGameMode());
 		if(!gameMode){
 			PrintFormat("[CTA_Spectator] Failed to downcast from BaseGameMode to SCR_BaseGameMode.");
+			return;
 		}
-		// Model -> View 
-		alivePlayer.GetOnAlivePlayerAdded().Insert(OnAlivePlayerAddedHandler);
-		alivePlayer.GetOnAlivePlayerRemoved().Insert(OnAlivePlayerRemoved);
-		alivePlayer.GetOnAlivePlayerReset().Insert(OnAlivePlayerReset);
-		// View -> Model
+		gameMode.GetOnPlayerConnected().Insert(OnPlayerConnectedHandler);
+		gameMode.GetOnPlayerDisconnected().Insert(OnPlayerDisconnectedHandler);
 		m_playerListView.GetOnPlayerButtonClicked().Insert(OnPlayerButtonClickedHandler);
 		
 	}
@@ -87,25 +100,42 @@ class CTA_SpectatorUI : EditorMenuUI
 		SCR_BaseGameMode gameMode = SCR_BaseGameMode.Cast(GetGame().GetGameMode());
 		if(!gameMode){
 			PrintFormat("[CTA_Spectator] Failed to downcast from BaseGameMode to SCR_BaseGameMode.");
+		}else{
+			gameMode.GetOnPlayerConnected().Remove(OnPlayerConnectedHandler);
+			gameMode.GetOnPlayerDisconnected().Remove(OnPlayerDisconnectedHandler);
+		}
+
+		if (m_OnPlayerLivesChanged)
+		{
+			m_OnPlayerLivesChanged.Remove(OnPlayerLivesChangedHandler);
+			m_OnPlayerLivesChanged = null;
 		}
 		
 		CTA_Spectator.GetInstance().Disable();
 	}
 	
-	void OnAlivePlayerAddedHandler(int playerId){
-		string name = SCR_PlayerNamesFilterCache.GetInstance().GetPlayerDisplayName(playerId);
-		m_playerListView.AddPlayerEntry(playerId,name);
+	void OnPlayerConnectedHandler(int playerId){
+		RefreshPlayerEntry(playerId);
 	}
 	
-	void OnAlivePlayerRemoved(int playerId){
+	void OnPlayerDisconnectedHandler(int playerId, KickCauseCode cause = KickCauseCode.NONE, int timeout = -1){
 		m_playerListView.RemovePlayerEntry(playerId);
 	}
-	
-	void OnAlivePlayerReset(array<int> ids){
-		m_playerListView.ClearPlayerList();
-		foreach(int id :ids){
-			string name = SCR_PlayerNamesFilterCache.GetInstance().GetPlayerDisplayName(id);
-			m_playerListView.AddPlayerEntry(id,name);
+
+	protected void OnPlayerLivesChangedHandler(int playerId)
+	{
+		RefreshPlayerEntry(playerId);
+	}
+
+	protected void RefreshPlayerEntry(int playerId)
+	{
+		if (m_playerLifeManager.GetLives(playerId) < 1)
+		{
+			m_playerListView.RemovePlayerEntry(playerId);
+			return;
 		}
+
+		string name = SCR_PlayerNamesFilterCache.GetInstance().GetPlayerDisplayName(playerId);
+		m_playerListView.AddPlayerEntry(playerId, name);
 	}
 }

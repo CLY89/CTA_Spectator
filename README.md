@@ -4,16 +4,16 @@ Arma Reforger向けの観戦Modです。プレイヤー一覧から観戦先へ�
 
 ## 主な機能
 
-- プレイヤー一覧から観戦先へカメラを移動
+- 接続中のプレイヤー一覧から観戦先へカメラを移動
 - 観戦カメラ付近のローカルボイスを受信
 - 観戦終了時に通常の音声受信へ復帰
-- 個人別・共有チケット方式のリスポーン制限
+- プレイヤーごとの残機および勢力ごとのチケットによるリスポーン制限
 
 ## ミッションへの組み込み
 
 1. ミッションのプロジェクトに`CTA_Spectator`を依存関係として追加します。
 2. サーバーと全クライアントで、同じバージョンのModを読み込みます。
-3. 使用するGameModeに`CTA_RespawnLimiterComponent`と`CTA_AlivePlayerComponent`があることを確認します。Mod内の`Prefabs/MP/Modes/GameMode_Base.et`に追加されています。
+3. 使用するGameModeに`CTA_CallQueue`、`CTA_PlayerLifeManagerComponent`、`CTA_FactionTicketManagerComponent`、`CTA_RespawnSystemComponent`があることを確認します。Mod内の`Prefabs/MP/Modes/GameMode_Base.et`に追加されています。
 4. 手動で観戦へ入る場所には、`ActionsManagerComponent`のアクションとして`CTA_EnableSpectatorAction`を設定します。アクションの表示名とコンテキストも設定してください。
 
 配置例は[`worlds/Test.ent`](worlds/Test.ent)と、その`Test_Layers`フォルダーを参照してください。  
@@ -21,22 +21,19 @@ Arma Reforger向けの観戦Modです。プレイヤー一覧から観戦先へ�
 
 ## リスポーン制限
 
-初期設定は`Unlimited`（無制限）です。設定値は現状、Workbenchのコンポーネントプロパティとして公開されていません。
+初期設定は`Unlimited`（無制限）です。リスポーン方式、初期ライフ数、初期チケット数はMission Headerの`m_eRespawnType`、`m_iInitialLives`、`m_iInitialFactionTickets`で設定できます。
 
 | 方式 | 管理者チャットコマンド | 内容 |
 |---|---|---|
-| 個人別 | `#respawnType individual` | プレイヤーごとの死亡回数で制限 |
-| 共有 | `#respawnType ticket` | 全プレイヤーの合計死亡回数で制限 |
-| 無制限 | `#respawnType unlimited` | 死亡回数による観戦移行を無効化 |
+| 残機 | `#respawnType life` | プレイヤーごとの残機で制限 |
+| 勢力チケット | `#respawnType ticket` | 所属勢力ごとのチケット数で制限 |
+| 無制限 | `#respawnType unlimited` | ライフ・チケットによる観戦移行を無効化 |
 
-回数の上限は`#respawnLimit 数値`で設定します。例えば、最初の死亡後から観戦させる場合は次の組み合わせです。
+Mission Headerでリスポーン方式、初期ライフ数、初期チケット数を指定できます。Scenario Frameworkで`respawnType`変数を設定した場合は、Mission Headerの方式よりScenario Frameworkの指定が優先されます。以前の`individual`指定も互換性のため利用できます。Ticket方式では、勢力チケットが残っている間はチケットのみを消費します。勢力チケットが0になった後、次の死亡からプレイヤーライフを消費し、ライフが0で再スポーンすると観戦へ移行します。Life方式ではライフのみ、Unlimited方式ではどちらも消費しません。
 
-```text
-#respawnType individual
-#respawnLimit 0
-```
+管理者は`#initialLife 数値`と`#initialTicket 数値`で、それぞれの初期値を変更できます。変更すると、接続中プレイヤーの残ライフまたは各勢力の残チケットも新しい値に更新されます。Ticket方式のフォールバックライフは`initialLife`設定にかかわらず1に固定されます。
 
-回数の上限のみ、Scenario Frameworkの変数`respawnLimit`からも設定できます。変数がある場合は初期化時に読み込まれます。方式は別途設定してください。
+リスポーン方式と残数はサーバー側で管理し、更新状態をクライアントへ配信します。プレイヤーライフと勢力チケットのManagerは残数のみを管理し、死亡イベントの処理は`CTA_RespawnSystemComponent`が担います。観戦者UIの一覧は接続中のプレイヤーを表示します。
 
 ## 動作上の注意
 

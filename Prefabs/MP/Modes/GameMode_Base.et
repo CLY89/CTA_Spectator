@@ -1,9 +1,13 @@
 SCR_BaseGameMode {
  ID "56B2B479C6B96951"
  components {
-  CTA_AlivePlayerComponent "{6AA64C36D68ED8B3}" {
+  CTA_CallQueue "{7CBA29AF51D440E8}" {
   }
-  CTA_RespawnLimiterComponent "{6A94480D89C0EAF5}" {
+  CTA_PlayerLifeManagerComponent "{6B1130E288E2AC21}" {
+  }
+  CTA_FactionTicketManagerComponent "{6B1130E288E2AC22}" {
+  }
+  CTA_RespawnSystemComponent "{6B1130E288E2AC24}" {
   }
  }
 }

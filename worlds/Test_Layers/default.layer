@@ -11,10 +11,6 @@ GenericEntity Area_Example_SetVariable : "{C72F956E4AC6A6E7}Prefabs/Systems/Scen
    components {
     SCR_ScenarioFrameworkLayerBase "{5A2283EA2A0B4B14}" {
      m_aActivationActions {
-      SCR_ScenarioFrameworkSetVariable "{6A94A0ABCBC90226}" {
-       m_sVariableName "respawnLimit"
-       m_sVariableValue "5"
-      }
       SCR_ScenarioFrameworkSetVariable "{6ADCFD98F1E72D01}" {
        m_sVariableName "respawnType"
        m_sVariableValue "individual"

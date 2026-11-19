@@ -55,6 +55,14 @@ PerceptionManager PerceptionManager : "{028DAEAD63E056BE}Prefabs/World/Game/Perc
  coords 6297.859 430.558 6365.888
 }
 SCR_GameModeEditor GameMode_Editor_Full : "{DA3986AF1B5032B7}Prefabs/MP/Modes/Editor/GameMode_Editor_Full.et" {
+ components {
+  CTA_FactionTicketManagerComponent "{6B1130E288E2AC22}" {
+   m_iInitialFactionTickets 3
+  }
+  CTA_RespawnSystemComponent "{6B1130E288E2AC24}" {
+   m_eRespawnType Life
+  }
+ }
  coords 6297.859 430.355 6364.888
 }
 SCR_SpawnPoint : "{5A2220DD0C16958B}Prefabs/MP/Spawning/SpawnPoint_US.et" {
