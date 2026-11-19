@@ -14,8 +14,4 @@ Thumbs.db
 desktop.ini
 
 # Keep addon.gproj, resource .meta files and test assets tracked.
-<<<<<<< HEAD
 # addon.gproj、リソースの.meta、テスト用資産はGitで管理する。
-=======
-# addon.gproj、リソースの.meta、テスト用資産はGitで管理する。
->>>>>>> 0bdbe195a984ca04bbe1f703285a835f067286d7
